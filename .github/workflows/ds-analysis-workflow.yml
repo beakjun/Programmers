@@ -3,7 +3,7 @@ name: Pull Latest Code to DS Server
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   pull_code:
@@ -19,5 +19,5 @@ jobs:
         run: |
           ssh -p 22002 -o StrictHostKeyChecking=no ${{ secrets.DS_SERVER_USER }}@${{ secrets.DS_SERVER_HOST }} "
             cd /home/${{ secrets.DS_SERVER_USER }}/gitaction_test/Programmers &&
-            git pull origin develop
+            git pull origin master
           "
