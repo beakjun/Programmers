@@ -18,6 +18,6 @@ jobs:
       - name: Pull latest code on remote server
         run: |
           ssh -p 22002 -o StrictHostKeyChecking=no ${{ secrets.DS_SERVER_USER }}@${{ secrets.DS_SERVER_HOST }} "
-            cd /home/${{ secrets.DS_SERVER_USER }}/WoodPecker/woodpecker-msa &&
+            cd /home/${{ secrets.DS_SERVER_USER }}/gitaction_test/Programmers &&
             git pull origin develop
           "
