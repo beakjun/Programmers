@@ -1,0 +1,23 @@
+name: Pull Latest Code to DS Server
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  pull_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start SSH Agent
+        uses: webfactory/ssh-agent@v0.5.4  # ✅ 안정 버전
+        with:
+          ssh-private-key: ${{ secrets.DS_SSH_PRIVATE_KEY }}
+
+      - name: Pull latest code on remote server
+        run: |
+          ssh -p 22002 -o StrictHostKeyChecking=no ${{ secrets.DS_SERVER_USER }}@${{ secrets.DS_SERVER_HOST }} "
+            cd /home/${{ secrets.DS_SERVER_USER }}/WoodPecker/woodpecker-msa &&
+            git pull origin develop
+          "
